@@ -15,7 +15,7 @@ public final class BusinessHotel extends StayPlace {
     private final RoomInfo roomInfo;
 
     public BusinessHotel(String name, ContactDetails contact, PricePlan price, RoomInfo roomInfo) {
-        super(name, Hotelcategory.BUSINESS, contact, price);
+        super(name, HotelCategory.BUSINESS, contact, price);
         this.roomInfo = roomInfo;
     }
 

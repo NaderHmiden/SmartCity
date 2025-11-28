@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Controllers.HotelListController"
+            prefWidth="1250" prefHeight="780"
+            style="-fx-background-color:#F4F6F9;">
+
+    <!-- ===================== HEADER ===================== -->
+    <top>
+        <HBox spacing="25"
+              style="-fx-padding:22 30;
+                     -fx-background-color:white;
+                     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.12),15,0,0,4);">
+
+            <Label text="🏨 Hotels Explorer"
+                   style="-fx-font-size:32; -fx-font-weight:900; -fx-text-fill:#1F2937;"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="searchField" promptText="🔍 Rechercher un hôtel..."
+                       style="-fx-background-radius:40;
+                              -fx-padding:12 20;
+                              -fx-font-size:15;
+                              -fx-border-color:#D1D5DB;
+                              -fx-border-radius:40;
+                              -fx-background-color:#FFFFFF;"/>
+
+            <Button text="Rechercher" onAction="#onSearch"
+                    style="-fx-background-color:#2563EB;
+                           -fx-text-fill:white;
+                           -fx-font-weight:700;
+                           -fx-background-radius:40;
+                           -fx-padding:10 25;
+                           -fx-font-size:15;"/>
+        </HBox>
+    </top>
+
+
+    <!-- ===================== FILTER SIDEBAR ===================== -->
+    <left>
+        <VBox prefWidth="270" spacing="28"
+              style="-fx-padding:30;
+                     -fx-background-color:white;
+                     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.10),18,0,0,6);
+                     -fx-background-radius:0 20 20 0;">
+
+            <Label text="Filtres de Recherche"
+                   style="-fx-font-size:22; -fx-font-weight:800; -fx-text-fill:#111827;"/>
+
+            <Separator/>
+
+            <!-- Catégorie -->
+            <VBox spacing="8">
+                <Label text="Catégorie ⭐" style="-fx-font-size:15; -fx-font-weight:600;"/>
+                <ComboBox fx:id="categoryCombo"
+                          style="-fx-background-radius:30; -fx-padding:4 8;
+                                 -fx-font-size:14; -fx-border-radius:30;"/>
+            </VBox>
+
+            <!-- Prix -->
+            <VBox spacing="8">
+                <Label text="Prix Maximum (TND / nuit)" style="-fx-font-size:15; -fx-font-weight:600;"/>
+                <Slider fx:id="priceSlider" min="50" max="2000" value="500"
+                        showTickMarks="true" showTickLabels="true"
+                        style="-fx-control-inner-background:#60A5FA;"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Equipements -->
+            <Label text="Équipements 🏷️" style="-fx-font-size:16; -fx-font-weight:700;"/>
+
+            <VBox spacing="5" style="-fx-padding:6 0;">
+                <CheckBox fx:id="wifiCheck" text="Wi-Fi Haut Débit"/>
+                <CheckBox fx:id="poolCheck" text="Piscine extérieure"/>
+                <CheckBox fx:id="parkingCheck" text="Parking sécurisé"/>
+            </VBox>
+
+            <Button text="🌐 Appliquer les filtres"
+                    onAction="#applyFilters"
+                    style="-fx-background-color:#10B981;
+                           -fx-text-fill:white;
+                           -fx-font-weight:bold;
+                           -fx-background-radius:30;
+                           -fx-padding:9 24;
+                           -fx-font-size:14;"/>
+        </VBox>
+    </left>
+
+
+    <!-- ===================== CENTER : HOTELS CARD FLOW ===================== -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                    style="-fx-background-color:transparent;">
+            <FlowPane fx:id="hotelsContainer" vgap="35" hgap="35"
+                      alignment="TOP_LEFT"
+                      style="-fx-padding:35;" prefWrapLength="900">
+                <!-- Cartes d’hôtels générées dynamiquement -->
+            </FlowPane>
+        </ScrollPane>
+    </center>
+
+
+    <!-- ===================== FOOTER ===================== -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT"
+              style="-fx-padding:20 40;
+                     -fx-background-color:white;
+                     -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.05),8,0,0,2);">
+
+            <Button text="➕ Ajouter un Nouvel Hôtel"
+                    onAction="#addHotel"
+                    style="-fx-background-color:#EF4444;
+                           -fx-text-fill:white;
+                           -fx-font-size:17;
+                           -fx-font-weight:800;
+                           -fx-background-radius:40;
+                           -fx-padding:12 40;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

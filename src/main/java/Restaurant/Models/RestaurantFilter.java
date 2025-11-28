@@ -8,7 +8,6 @@ package Restaurant.Models;
  *
  * @author manso
  */
-import citymanager.restaurant.model.FoodPlace;
 
 @FunctionalInterface
 public interface RestaurantFilter {

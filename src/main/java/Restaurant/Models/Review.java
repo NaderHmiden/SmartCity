@@ -17,7 +17,7 @@ import java.time.LocalDate;
  */
 public final class Review {
     private final String user;
-    private final int rating; // 1..5
+    private final int rating; 
     private final String comment;
     private final LocalDate date;
 

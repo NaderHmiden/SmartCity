@@ -59,7 +59,7 @@ public sealed abstract class FoodPlace permits FastFood, LuxuryRestaurant {
                 .filter(mi -> mi.name().toLowerCase().contains(low))
                 .toList();
     }
-
+    // ABSTRACT METHOD//////////////////////////////////////
     public abstract String getType();
 
     @Override

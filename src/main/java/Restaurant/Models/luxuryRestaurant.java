@@ -31,6 +31,13 @@ public final class LuxuryRestaurant extends FoodPlace {
     public boolean hasMichelinStar() { return hasMichelinStar; }
 
     @Override
-    public String getType() { return "LuxuryRestaurant"; }
+    public String getType() { return "LuxuryRestaurant"; };
+    @Override
+    public String toString() {
+       return super.toString() + 
+           ", sommeliers=" + sommeliers + 
+           ", MichelinStar=" + hasMichelinStar;
+}
+
 }
 

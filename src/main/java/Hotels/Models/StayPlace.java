@@ -39,7 +39,7 @@ public sealed abstract class StayPlace permits Resort, BusinessHotel {
     public PricePlan getPrice() {
         return price;
     }
-
+    ///////////////ABSTRACT CLASS//////////////////////////////////////
     public abstract void showInfo();
 
     @Override

@@ -1,43 +1,82 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Hotels.services;
 
-/**
- *
- * @author manso
- */
 import Hotels.Models.HotelFilter;
 import Hotels.Models.StayPlace;
 import Hotels.Models.HotelNotFoundException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 public class HotelService {
 
     private final List<StayPlace> hotels = new ArrayList<>();
 
+    /**
+     * Ajoute un nouvel hôtel (avec contrôle si déjà existant)
+     */
     public void addHotel(StayPlace hotel) {
+        if (hotel == null)
+            throw new IllegalArgumentException("Hotel cannot be null");
+
+        boolean exists = hotels.stream()
+                .anyMatch(h -> h.getName().equalsIgnoreCase(hotel.getName()));
+
+        if (exists)
+            throw new IllegalStateException("Hotel already exists: " + hotel.getName());
+
         hotels.add(hotel);
     }
 
-    public StayPlace findByName(String name) {
+    /**
+     * Recherche par nom en retournant Optional (meilleure pratique)
+     */
+    public Optional<StayPlace> findByName(String name) {
         return hotels.stream()
                 .filter(h -> h.getName().equalsIgnoreCase(name))
-                .findFirst()
+                .findFirst();
+    }
+
+    /**
+     * Même méthode mais version qui lance exception
+     */
+    public StayPlace findOrThrow(String name) {
+        return findByName(name)
                 .orElseThrow(() -> new HotelNotFoundException("Hotel not found: " + name));
     }
 
+    /**
+     * Filtre dynamique avec HotelFilter
+     */
     public List<StayPlace> filter(HotelFilter filter) {
+        if (filter == null) return List.of(); // sécurité
         return hotels.stream()
                 .filter(filter::apply)
-                .collect(Collectors.toList());
+                .toList(); // Java 16+, remplace Collectors.toList()
     }
 
+    /**
+     * Liste immuable → empêche modification externe
+     */
     public List<StayPlace> getAll() {
-        return hotels;
+        return Collections.unmodifiableList(hotels);
+    }
+
+    /**
+     * Suppression d’un hôtel par nom
+     */
+    public boolean remove(String name) {
+        return hotels.removeIf(h -> h.getName().equalsIgnoreCase(name));
+    }
+
+    /**
+     * Moyenne des prix journaliers (bonus utile)
+     */
+    public double averagePrice() {
+        return hotels.stream()
+                .mapToDouble(h -> h.getPricePlan().basePrice())
+                .average()
+                .orElse(0.0);
     }
 }
