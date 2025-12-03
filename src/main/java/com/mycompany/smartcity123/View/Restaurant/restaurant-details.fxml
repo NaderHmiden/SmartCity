@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" prefWidth="400" prefHeight="300" style="-fx-padding:20;">
+
+    <Label text="Détails Restaurant" style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Nom:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="nameLabel" text="Nom du restaurant" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Cuisine:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="cuisineLabel" text="Type de cuisine" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Prix:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="priceLabel" text="€10 - €50" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Ville:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="cityLabel" text="Ville" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Adresse:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Label fx:id="addressLabel" text="Adresse complète" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Button text="Retour" fx:id="btnBack"/>
+</VBox>

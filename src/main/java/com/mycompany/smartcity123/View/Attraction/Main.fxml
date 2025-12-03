@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.mycompany.smartcity123.Controller.MainController">
+    
+    <VBox spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Smart City Management System" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        
+        <Label text="Bienvenue dans le système de gestion de la ville intelligente" 
+               style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+        
+        <HBox spacing="20" alignment="CENTER">
+            <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #ecf0f1; -fx-border-radius: 10;">
+                <Label text="Gestion des Attractions" style="-fx-font-weight: bold;"/>
+                <Button text="Ouvrir" onAction="#handleOpenAttractions" 
+                        style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            </VBox>
+            
+            <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #ecf0f1; -fx-border-radius: 10;">
+                <Label text="Gestion des Événements" style="-fx-font-weight: bold;"/>
+                <Button text="Ouvrir" onAction="#handleOpenEvents" 
+                        style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            </VBox>
+            
+            <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #ecf0f1; -fx-border-radius: 10;">
+                <Label text="Statistiques" style="-fx-font-weight: bold;"/>
+                <Button text="Ouvrir" onAction="#handleOpenStats" 
+                        style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            </VBox>
+        </HBox>
+        
+        <Label fx:id="statusLabel" text="Prêt" style="-fx-text-fill: #27ae60; -fx-font-style: italic;"/>
+    </VBox>
+    
+</AnchorPane>

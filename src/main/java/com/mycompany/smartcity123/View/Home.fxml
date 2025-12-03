@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns="http://javafx.com/javafx/20.0.2"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="30"
+      alignment="TOP_CENTER"
+      style="-fx-background-color: #f5f5f5; -fx-padding: 30;">
+
+    <!-- Header -->
+    <Label text="SmartCity Management" 
+           style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <Label text="Manage Hotels, Restaurants, and Attractions in one place"
+           style="-fx-font-size: 16px; -fx-text-fill: #34495e;"/>
+
+    <!-- Quick Access Buttons -->
+    <HBox spacing="40" alignment="CENTER">
+        <!-- Hotels -->
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; 
+                     -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10,0,0,5);">
+            <Label text="Hotels" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label text="Add, Edit, View Hotels" style="-fx-text-fill: #7f8c8d;"/>
+            <Button text="Open"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;"/>
+        </VBox>
+
+        <!-- Restaurants -->
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; 
+                     -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10,0,0,5);">
+            <Label text="Restaurants" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label text="Manage Restaurants easily" style="-fx-text-fill: #7f8c8d;"/>
+            <Button text="Open"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;"/>
+        </VBox>
+
+        <!-- Attractions -->
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: white; -fx-padding: 20; -fx-border-radius: 10; 
+                     -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10,0,0,5);">
+            <Label text="Attractions" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label text="Track Attractions &amp; Places" style="-fx-text-fill: #7f8c8d;"/>
+            <Button text="Open"
+                    style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 20 8 20;"/>
+        </VBox>
+    </HBox>
+
+    <!-- Dashboard Summary -->
+    <HBox spacing="40" alignment="CENTER">
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: #ecf0f1; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <Label text="Total Hotels" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="15" style="-fx-font-size: 24px; -fx-text-fill: #3498db;"/>
+        </VBox>
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: #ecf0f1; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <Label text="Total Restaurants" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="10" style="-fx-font-size: 24px; -fx-text-fill: #2ecc71;"/>
+        </VBox>
+        <VBox spacing="10" alignment="CENTER" 
+              style="-fx-background-color: #ecf0f1; -fx-padding: 20; -fx-border-radius: 10; -fx-background-radius: 10;">
+            <Label text="Total Attractions" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            <Label text="20" style="-fx-font-size: 24px; -fx-text-fill: #e67e22;"/>
+        </VBox>
+    </HBox>
+
+</VBox>
