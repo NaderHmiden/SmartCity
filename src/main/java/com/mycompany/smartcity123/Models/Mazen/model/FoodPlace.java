@@ -1,17 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.smartcity123.Models.Mazen.model;
 
-/**
- *
- * @author manso
- */
-
-
-
-public sealed abstract class FoodPlace permits FastFood ,luxuryRestaurant {
+public abstract sealed class FoodPlace permits FastFood, luxuryRestaurant {
     private final int id;
     private final String name;
     private final CuisineType cuisine;
@@ -20,7 +9,7 @@ public sealed abstract class FoodPlace permits FastFood ,luxuryRestaurant {
     private final PriceRange priceRange;
 
     protected FoodPlace(int id, String name, CuisineType cuisine,
-                       Address address, ContactInfo contact, PriceRange priceRange) {
+                        Address address, ContactInfo contact, PriceRange priceRange) {
         this.id = id;
         this.name = name;
         this.cuisine = cuisine;
@@ -35,6 +24,11 @@ public sealed abstract class FoodPlace permits FastFood ,luxuryRestaurant {
     public Address getAddress() { return address; }
     public ContactInfo getContact() { return contact; }
     public PriceRange getPriceRange() { return priceRange; }
+
+    /** Pour le TableColumn colType */
+    public String getCuisineType() {
+        return cuisine.name(); // retourne ITALIAN, FRENCH, etc.
+    }
 
     public abstract String getType();
 

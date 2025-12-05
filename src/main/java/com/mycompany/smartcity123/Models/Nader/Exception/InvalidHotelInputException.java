@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.smartcity123.Models.Nader.Exception;
 
-/**
- *
- * @author manso
- */
-public class invalidHotelInputException extends RuntimeException {
-    public invalidHotelInputException(String msg) {
-        super(msg);
+public class InvalidHotelInputException extends Exception {
+    public InvalidHotelInputException(String message) {
+        super(message);
     }
 }

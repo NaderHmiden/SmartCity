@@ -1,14 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.smartcity123.Models.Nader.model;
-
-/**
- *
- * @author manso
- */
-
 
 public sealed abstract class StayPlace permits Resort, BusinessHotel {
 
@@ -29,6 +19,11 @@ public sealed abstract class StayPlace permits Resort, BusinessHotel {
     public ContactDetails getContact() { return contact; }
     public PricePlan getPricePlan() { return price; }
 
+    /** Pour TableColumn colAddress */
+    public String getAddress() {
+        return contact != null ? contact.city() : "";
+    }
+
     public abstract void showInfo();
 
     @Override
@@ -36,5 +31,3 @@ public sealed abstract class StayPlace permits Resort, BusinessHotel {
         return name + " (" + category + ")";
     }
 }
-
-

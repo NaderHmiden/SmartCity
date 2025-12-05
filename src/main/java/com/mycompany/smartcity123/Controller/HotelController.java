@@ -1,45 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.smartcity123.Controller;
 
-/**
- *
- * @author manso
- */
+import com.mycompany.smartcity123.Models.Nader.model.HotelService;
+import com.mycompany.smartcity123.Models.Nader.model.StayPlace;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.beans.property.SimpleStringProperty;
+
 public class HotelController {
 
-    private final HotelService service;
-    private final HotelListView listView;
-    private final HotelDetailsView detailsView;
+    @FXML private TableView<StayPlace> hotelTable;
+    @FXML private TableColumn<StayPlace, String> colName;
+    @FXML private TableColumn<StayPlace, String> colCategory;
+    @FXML private TableColumn<StayPlace, String> colContact;
 
-    public HotelController() {
-        this.service = new HotelService();
-        this.listView = new HotelListView();
-        this.detailsView = new HotelDetailsView();
+    private HotelService service;
+    private final ObservableList<StayPlace> data = FXCollections.observableArrayList();
+
+    public void setService(HotelService service) {
+        this.service = service;
+        loadHotels();
     }
 
-    public void showAll() {
-        listView.render(service.getAll());
+    @FXML
+    public void initialize() {
+        colName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getName()));
+        colCategory.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCategory().toString()));
+        colContact.setCellValueFactory(c -> new SimpleStringProperty(
+                c.getValue().getContact().phone() + " / " + c.getValue().getContact().email()
+        ));
+        hotelTable.setItems(data);
     }
 
-    public void showDetails(int id) {
-        try {
-            detailsView.render(service.getById(id));
-        } catch (Exception e) {
-            System.out.println("Erreur : " + e.getMessage());
+    private void loadHotels() {
+        if (service != null) {
+            data.setAll(service.getAll());
         }
     }
-
-    public void create(Hotel h) {
-        service.add(h);
-        System.out.println("Hotel ajouté !");
-    }
-
-    public void delete(int id) {
-        service.remove(id);
-        System.out.println("Hotel supprimé !");
-    }
 }
-

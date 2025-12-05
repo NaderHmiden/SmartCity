@@ -1,14 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.smartcity123.Models.Nader.model;
-
-/**
- *
- * @author manso
- */
-
 
 public final class BusinessHotel extends StayPlace {
 
@@ -23,5 +13,10 @@ public final class BusinessHotel extends StayPlace {
     public void showInfo() {
         System.out.println("Business Hotel: " + getName() +
                 " | Rooms: " + roomInfo.numberOfRooms());
+    }
+
+    // Ajouter ce getter manquant
+    public RoomInfo getRoomInfo() {
+        return roomInfo;
     }
 }
