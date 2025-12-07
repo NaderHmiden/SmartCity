@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="TOP_CENTER"
+      xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mycompany.smartcity123.Controller.Mazen.RestaurantAddController"
+      prefWidth="700" prefHeight="600"
+      style="-fx-padding:20; -fx-background-color: #f5f5f5;">
+
+    <Label text="Ajouter un Restaurant"
+           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <!-- ID et Nom -->
+        <Label text="ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="idField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nom:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <!-- Type et Cuisine -->
+        <Label text="Type:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="typeField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Cuisine:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cuisineField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <!-- Adresse -->
+        <Label text="Rue:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="streetField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Ville:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="cityField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Code Postal:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="postalField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <!-- Contact -->
+        <Label text="Téléphone:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="phoneField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+        <TextField fx:id="emailField" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+
+        <!-- Prix -->
+        <Label text="Prix min:" GridPane.rowIndex="9" GridPane.columnIndex="0"/>
+        <TextField fx:id="minPriceField" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+
+        <Label text="Prix max:" GridPane.rowIndex="10" GridPane.columnIndex="0"/>
+        <TextField fx:id="maxPriceField" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
+
+        <!-- Options FastFood -->
+        <Label text="Drive Through:" GridPane.rowIndex="11" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="driveThroughBox" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+
+        <Label text="Livraison:" GridPane.rowIndex="12" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="deliveryBox" GridPane.rowIndex="12" GridPane.columnIndex="1"/>
+
+        <!-- Options LuxuryRestaurant -->
+        <Label text="Michelin:" GridPane.rowIndex="13" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="michelinBox" GridPane.rowIndex="13" GridPane.columnIndex="1"/>
+
+        <Label text="Sommeliers:" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
+        <TextArea fx:id="sommeliersArea" GridPane.rowIndex="14" GridPane.columnIndex="1" prefRowCount="3"/>
+    </GridPane>
+
+    <!-- Boutons -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Ajouter" onAction="#addRestaurant"
+                style="-fx-font-size:14px; -fx-background-color:#4CAF50; -fx-text-fill:white;"/>
+        <Button text="Annuler" onAction="#close"
+                style="-fx-font-size:14px; -fx-background-color:#f44336; -fx-text-fill:white;"/>
+    </HBox>
+
+</VBox>

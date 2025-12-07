@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.mycompany.smartcity123.Controller.Nader.HotelEditController"
+      spacing="10" alignment="TOP_CENTER" prefWidth="400" prefHeight="500" style="-fx-padding:20;">
+
+    <Label text="Modifier Hôtel" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+    
+    <TextField fx:id="nameField" promptText="Nom"/>
+    <TextField fx:id="phoneField" promptText="Téléphone"/>
+    <TextField fx:id="emailField" promptText="Email"/>
+    <TextField fx:id="cityField" promptText="Ville"/>
+    <TextField fx:id="minPriceField" promptText="Prix Min"/>
+    <TextField fx:id="maxPriceField" promptText="Prix Max"/>
+    
+    <ComboBox fx:id="categoryField"/>
+
+    <TextArea fx:id="amenitiesArea" promptText="Services / Commodités"/>
+    <CheckBox fx:id="poolBox" text="Piscine"/>
+    <CheckBox fx:id="spaBox" text="Spa"/>
+    <TextField fx:id="roomsField" promptText="Nombre de chambres"/>
+    <CheckBox fx:id="meetingRoomBox" text="Salle de réunion"/>
+    
+    <HBox spacing="10">
+        <Button text="Enregistrer" onAction="#saveChanges"/>
+        <Button text="Annuler" />
+    </HBox>
+</VBox>

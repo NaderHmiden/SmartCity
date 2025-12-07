@@ -1,7 +1,10 @@
-package com.mycompany.smartcity123.Controller;
+package com.mycompany.smartcity123.Controller.Aziz;
 
 import com.mycompany.smartcity123.Models.Aziz.model.Attraction;
 import com.mycompany.smartcity123.Models.Aziz.model.AttractionService;
+import com.mycompany.smartcity123.Models.Aziz.model.Place;
+import com.mycompany.smartcity123.Models.Mazen.model.RestaurantService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,7 +24,7 @@ public class AttractionController {
     @FXML private TableColumn<Attraction, String> colName;
     @FXML private TableColumn<Attraction, String> colCategory;
     @FXML private TableColumn<Attraction, Double> colPrice;
-
+private final AttractionService service = AttractionService.getInstance();
     @FXML
     public void initialize() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -46,5 +49,14 @@ public class AttractionController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    };
+    @FXML
+    private void deleteAttraction(ActionEvent event) {
+        Place selected = attractionTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            service.removeAttraction(selected.getId());
+        }
     }
+
+    
 }

@@ -14,7 +14,7 @@ public class MainController {
 
     @FXML
     private void goToHotel(ActionEvent event) {
-        openView(event, "/com/mycompany/smartcity123/View/Hotel/Hotel-list.fxml", "Hotels");
+        openView(event, "/fxml/hotel-list.fxml", "Hotels");
     }
 
     @FXML
@@ -24,7 +24,7 @@ public class MainController {
 
     @FXML
     private void goToRestaurant(ActionEvent event) {
-        openView(event, "/com/mycompany/smartcity123/View/Restaurant/restaurant-list.fxml", "Restaurants");
+        openView(event, "/fxml/restaurant-list.fxml", "Restaurants");
     }
 
     /**

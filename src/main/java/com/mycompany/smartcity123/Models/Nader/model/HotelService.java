@@ -1,16 +1,22 @@
 package com.mycompany.smartcity123.Models.Nader.model;
 
-import com.mycompany.smartcity123.Models.Nader.Exception.HotelNotFoundException;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 public class HotelService {
 
-    private final List<StayPlace> hotels = new ArrayList<>();
+    // Liste observable pour JavaFX
+    private final ObservableList<StayPlace> hotels = FXCollections.observableArrayList();
 
-   
+    // ====== SINGLETON ======
+    private static final HotelService instance = new HotelService();
+    private HotelService() {} // privé
+    public static HotelService getInstance() { return instance; }
+
+    // ====== AJOUT ======
     public void addHotel(StayPlace hotel) {
         Objects.requireNonNull(hotel, "Hotel cannot be null");
 
@@ -20,61 +26,49 @@ public class HotelService {
         hotels.add(hotel);
     }
 
-    
+    // ====== SUPPRESSION ======
+    public boolean removeHotel(String name) {
+        return hotels.removeIf(h -> h.getName().equalsIgnoreCase(name));
+    }
+
+    // ====== RECHERCHE ======
     public Optional<StayPlace> findByName(String name) {
         return hotels.stream()
                 .filter(h -> h.getName().equalsIgnoreCase(name))
                 .findFirst();
     }
 
-    
-    public StayPlace findOrThrow(String name) {
-        return findByName(name)
-                .orElseThrow(() -> new HotelNotFoundException("Hotel not found: " + name));
-    }
-
-   
-    public List<StayPlace> search(String keyword) {
+    public List<StayPlace> searchByName(String keyword) {
         if (keyword == null || keyword.isBlank()) return List.of();
         return hotels.stream()
                 .filter(h -> h.getName().toLowerCase().contains(keyword.toLowerCase()))
-                .collect(Collectors.toList());
-    }
-
-   
-    public List<StayPlace> getAll() {
-        return List.copyOf(hotels);
-    }
-
-    
-    public boolean remove(String name) {
-        return hotels.removeIf(h -> h.getName().equalsIgnoreCase(name));
-    }
-
-    
-    public List<StayPlace> filter(HotelFilter filter) {
-        if (filter == null) return List.of();
-        return hotels.stream().filter(filter::apply).toList();
-    }
-
-    
-    public double averagePrice() {
-        return hotels.stream()
-                .mapToDouble(h -> (h.getPricePlan().minPrice() + h.getPricePlan().maxPrice()) / 2)
-                .average()
-                .orElse(0.0);
-    }
-
-    
-    public List<StayPlace> sortByPrice() {
-        return hotels.stream()
-                .sorted(Comparator.comparingDouble(h -> (h.getPricePlan().minPrice() + h.getPricePlan().maxPrice()) / 2))
                 .toList();
     }
 
-    
-    public boolean exists(String name) {
-        return name != null &&
-                hotels.stream().anyMatch(h -> h.getName().equalsIgnoreCase(name));
+    // ====== FILTRES / TRI ======
+    public List<StayPlace> filterByCategory(HotelCategory category) {
+        return hotels.stream()
+                .filter(h -> h.getCategory() == category)
+                .toList();
+    }
+
+    public List<StayPlace> sortByAveragePrice() {
+        return hotels.stream()
+                .sorted((a, b) -> Double.compare(avg(a.getPricePlan()), avg(b.getPricePlan())))
+                .toList();
+    }
+
+    // ====== UTILS ======
+    private boolean exists(String name) {
+        return hotels.stream().anyMatch(h -> h.getName().equalsIgnoreCase(name));
+    }
+
+    private double avg(PricePlan price) {
+        return (price.minPrice() + price.maxPrice()) / 2.0;
+    }
+
+    // ====== GETTER ======
+    public ObservableList<StayPlace> getAll() {
+        return hotels;
     }
 }

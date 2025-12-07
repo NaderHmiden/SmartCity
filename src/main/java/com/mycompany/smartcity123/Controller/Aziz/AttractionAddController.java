@@ -1,4 +1,4 @@
-package com.mycompany.smartcity123.Controller;
+package com.mycompany.smartcity123.Controller.Aziz;
 
 import com.mycompany.smartcity123.Models.Aziz.model.*;
 import javafx.fxml.FXML;

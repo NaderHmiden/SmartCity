@@ -1,30 +1,49 @@
 package com.mycompany.smartcity123.Models.Mazen.model;
 
-import com.mycompany.smartcity123.Models.Mazen.Exception.RestaurantNotFoundException;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 
 public class RestaurantService {
 
-    private final List<FoodPlace> restaurants = new ArrayList<>();
+    // Liste observable pour JavaFX
+    private final ObservableList<FoodPlace> restaurants = FXCollections.observableArrayList();
 
-  
+    // ====== SINGLETON ======
+    private static final RestaurantService instance = new RestaurantService();
+    public static RestaurantService getInstance() { return instance; }
 
+    private RestaurantService() {}  // privé
+
+    // ====== AJOUT ======
     public void addRestaurant(FoodPlace r) {
         Objects.requireNonNull(r, "Restaurant cannot be null");
 
         if (existsById(r.getId()))
-            throw new IllegalStateException("ID already used: " + r.getId());
+            throw new IllegalStateException("Restaurant with ID already exists: " + r.getId());
 
         if (existsByName(r.getName()))
-            throw new IllegalStateException("Name already exists: " + r.getName());
+            throw new IllegalStateException("Restaurant with name already exists: " + r.getName());
 
         restaurants.add(r);
     }
 
-    
+    // ====== SUPPRESSION ======
+    public boolean removeRestaurant(int id) {
+        return restaurants.removeIf(r -> r.getId() == id);
+    }
+
+    // ====== RECHERCHE ======
+    public Optional<FoodPlace> findById(int id) {
+        return restaurants.stream()
+                .filter(r -> r.getId() == id)
+                .findFirst();
+    }
 
     public Optional<FoodPlace> findByName(String name) {
         return restaurants.stream()
@@ -32,7 +51,6 @@ public class RestaurantService {
                 .findFirst();
     }
 
-    
     public List<FoodPlace> searchByName(String keyword) {
         if (keyword == null || keyword.isBlank()) return List.of();
         return restaurants.stream()
@@ -40,52 +58,24 @@ public class RestaurantService {
                 .toList();
     }
 
-    public FoodPlace findOrThrow(String name) {
-        return findByName(name)
-                .orElseThrow(() -> new RestaurantNotFoundException("Restaurant not found: " + name));
-    }
-
-   
-
-    public List<FoodPlace> filter(CuisineType type) {
+    // ====== FILTRES / TRI ======
+    public List<FoodPlace> filterByCuisine(CuisineType type) {
         return restaurants.stream()
                 .filter(r -> r.getCuisine() == type)
                 .toList();
     }
 
-    
-    public List<FoodPlace> filter(RestaurantFilter filter) {
-        return restaurants.stream().filter(filter::apply).toList();
+    public List<FoodPlace> filter(Predicate<FoodPlace> rule) {
+        return restaurants.stream().filter(rule).toList();
     }
-
-    public List<FoodPlace> filter(Predicate<FoodPlace> condition) {
-        return restaurants.stream().filter(condition).toList();
-    }
-
 
     public List<FoodPlace> sortByAveragePrice() {
         return restaurants.stream()
-                .sorted(Comparator.comparingDouble(r -> avg(r.getPriceRange())))
+                .sorted((a, b) -> Double.compare(avg(a.getPriceRange()), avg(b.getPriceRange())))
                 .toList();
     }
 
-  
-
-    public boolean remove(int id) {
-        return restaurants.removeIf(r -> r.getId() == id);
-    }
-
-   
-  
-    public double averagePrice() {
-        return restaurants.stream()
-                .mapToDouble(r -> avg(r.getPriceRange()))
-                .average()
-                .orElse(0.0);
-    }
-
-   
-
+    // ====== UTILS ======
     private boolean existsById(int id) {
         return restaurants.stream().anyMatch(r -> r.getId() == id);
     }
@@ -94,11 +84,12 @@ public class RestaurantService {
         return restaurants.stream().anyMatch(r -> r.getName().equalsIgnoreCase(name));
     }
 
-    private double avg(PriceRange p) {
-        return (p.minPrice() + p.maxPrice()) / 2.0;
+    private double avg(PriceRange range) {
+        return (range.minPrice() + range.maxPrice()) / 2.0;
     }
 
-    public List<FoodPlace> getAll() {
-        return List.copyOf(restaurants);
+    // ====== GETTER ======
+    public ObservableList<FoodPlace> getAll() {
+        return restaurants;
     }
 }

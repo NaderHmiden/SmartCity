@@ -6,7 +6,7 @@
 <VBox spacing="15" alignment="TOP_CENTER"
       xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.mycompany.smartcity123.Controller.AttractionAddController"
+      fx:controller="com.mycompany.smartcity123.Controller.Aziz.AttractionAddController"
       prefWidth="400" prefHeight="450" style="-fx-padding:20;">
 
     <Label text="Ajouter une Attraction" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
